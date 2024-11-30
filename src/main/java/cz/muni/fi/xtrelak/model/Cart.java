@@ -16,7 +16,7 @@ public class Cart extends BaseEntity {
 
     public Cart(int id, String name, List<Integer> products) {
         super(id, name);
-        this.products = new ArrayList<>();
+        this.products = products;
     }
 
     public List<Integer> getProducts() {

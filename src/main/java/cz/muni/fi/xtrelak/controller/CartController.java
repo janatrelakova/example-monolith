@@ -1,6 +1,7 @@
 package cz.muni.fi.xtrelak.controller;
 
 import cz.muni.fi.xtrelak.dto.CartDto;
+import cz.muni.fi.xtrelak.dto.ProductDto;
 import cz.muni.fi.xtrelak.model.Product;
 import cz.muni.fi.xtrelak.service.CartService;
 import cz.muni.fi.xtrelak.service.ProductService;
@@ -70,5 +71,12 @@ public class CartController {
     @PostMapping("/{id}/product/{productId}")
     public void addProductToCart(@PathVariable("id") int id, @PathVariable("productId") int productId) {
         cartService.addProductToCart(id, productId);
+    }
+
+    @GetMapping("/{id}/product")
+    public List<ProductDto> getProductsInCart(@PathVariable("id") int id) {
+        var productIds = cartService.getCartById(id).getProducts();
+        var products = productService.findAllByIds(productIds);
+        return products.stream().map(Product::toProductDto).toList();
     }
 }

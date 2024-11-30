@@ -1,7 +1,6 @@
 package cz.muni.fi.xtrelak.repository;
 
 import cz.muni.fi.xtrelak.model.Cart;
-import cz.muni.fi.xtrelak.model.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
