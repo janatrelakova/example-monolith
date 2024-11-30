@@ -4,6 +4,7 @@ import cz.muni.fi.xtrelak.model.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -46,5 +47,15 @@ public class ProductRepository {
 
     public ArrayList<Product> findAll() {
         return products;
+    }
+
+    public List<Product> findAllByIds(List<Integer> ids) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Product product : products) {
+            if (ids.contains(product.getId())) {
+                result.add(product);
+            }
+        }
+        return result;
     }
 }

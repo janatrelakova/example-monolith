@@ -37,4 +37,12 @@ public class CartService {
     public void deleteCart(int id) {
         cartRepository.deleteById(id);
     }
+
+    public void addProductToCart(int id, int productId) {
+        Cart cart = cartRepository.findById(id).orElse(null);
+        if (cart == null) {
+            throw new IllegalArgumentException("Cart with id " + id + " not found");
+        }
+        cartRepository.addProduct(id, productId);
+    }
 }
