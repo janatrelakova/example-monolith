@@ -1,9 +1,12 @@
 package cz.muni.fi.xtrelak.controller;
 
 import cz.muni.fi.xtrelak.dto.OrderDto;
+import cz.muni.fi.xtrelak.dto.ProductDto;
 import cz.muni.fi.xtrelak.model.User;
 import cz.muni.fi.xtrelak.service.OrderService;
+import cz.muni.fi.xtrelak.service.ProductService;
 import cz.muni.fi.xtrelak.service.UserService;
+import cz.muni.fi.xtrelak.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +18,21 @@ public class UserController {
 
     private final UserService userService;
     private final OrderService orderService;
+    private final WishlistService wishlistService;
 
-    public UserController(@Autowired UserService userService, @Autowired OrderService orderService) {
+    public UserController(
+            @Autowired UserService userService,
+            @Autowired OrderService orderService,
+            @Autowired WishlistService wishlistService
+            ) {
         this.userService = userService;
         this.orderService = orderService;
+        this.wishlistService = wishlistService;
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
+        wishlistService.createNewWishlist(user.getId());
         return userService.createUser(user);
     }
 
