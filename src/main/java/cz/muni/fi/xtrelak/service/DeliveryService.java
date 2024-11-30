@@ -1,7 +1,6 @@
 package cz.muni.fi.xtrelak.service;
 
 import cz.muni.fi.xtrelak.model.Delivery;
-import cz.muni.fi.xtrelak.model.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

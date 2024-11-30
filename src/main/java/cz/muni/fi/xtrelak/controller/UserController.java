@@ -1,10 +1,8 @@
 package cz.muni.fi.xtrelak.controller;
 
 import cz.muni.fi.xtrelak.dto.OrderDto;
-import cz.muni.fi.xtrelak.dto.ProductDto;
-import cz.muni.fi.xtrelak.model.User;
+import cz.muni.fi.xtrelak.dto.UserDto;
 import cz.muni.fi.xtrelak.service.OrderService;
-import cz.muni.fi.xtrelak.service.ProductService;
 import cz.muni.fi.xtrelak.service.UserService;
 import cz.muni.fi.xtrelak.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,32 +29,37 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public UserDto createUser(@RequestBody UserDto user) {
         wishlistService.createNewWishlist(user.getId());
-        return userService.createUser(user);
+        var result = userService.createUser(user.toUserModel());
+        return new UserDto(result.getId(), result.getName());
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable("id") int id) {
-        return userService.getUserById(id);
+    public UserDto getUserById(@PathVariable("id") int id) {
+        var result = userService.getUserById(id);
+        return new UserDto(result.getId(), result.getName());
     }
 
     @GetMapping("/search")
-    public User searchUser(@RequestParam("username") String username) {
-        return userService.getUserByName(username);
+    public UserDto searchUser(@RequestParam("username") String username) {
+        var result = userService.getUserByName(username);
+        return new UserDto(result.getId(), result.getName());
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<UserDto> getAllUsers() {
+        var result = userService.getAllUsers();
+        return result.stream().map(u -> new UserDto(u.getId(), u.getName())).toList();
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable("id") int id, @RequestBody User user) {
+    public UserDto updateUser(@PathVariable("id") int id, @RequestBody UserDto user) {
         if (id != user.getId()) {
             throw new IllegalArgumentException("Id in path and in body must be the same");
         }
-        return userService.updateUser(user);
+        var result = userService.updateUser(user.toUserModel());
+        return new UserDto(result.getId(), result.getName());
     }
 
     @DeleteMapping("/{id}")

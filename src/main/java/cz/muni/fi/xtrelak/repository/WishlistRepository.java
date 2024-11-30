@@ -1,6 +1,5 @@
 package cz.muni.fi.xtrelak.repository;
 
-import cz.muni.fi.xtrelak.dto.ProductDto;
 import cz.muni.fi.xtrelak.model.Wishlist;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 @Component
 public class WishlistRepository {
-    private final List<Wishlist> wishlists = new ArrayList<Wishlist>(
+    private final List<Wishlist> wishlists = new ArrayList<>(
             new ArrayList<>() {{
                 add(new Wishlist(1, List.of(1)));
                 add(new Wishlist(2, List.of(1, 2)));

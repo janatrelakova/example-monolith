@@ -1,6 +1,5 @@
 package cz.muni.fi.xtrelak.service;
 
-import cz.muni.fi.xtrelak.dto.ProductDto;
 import cz.muni.fi.xtrelak.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
