@@ -4,15 +4,16 @@ import cz.muni.fi.xtrelak.model.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
 public class OrderRepository {
     private final ArrayList<Order> orders = new ArrayList<>(
             new ArrayList<>() {{
-                add(new Order(1, "Order"));
-                add(new Order(2, "Order"));
-                add(new Order(3, "Order"));
+                add(new Order(1, "Order", null, null, List.of()));
+                add(new Order(2, "Order", null, null, List.of()));
+                add(new Order(3, "Order", null, null, List.of()));
             }}
     );
 
@@ -25,6 +26,8 @@ public class OrderRepository {
         for (Order c : orders) {
             if (c.getId() == order.getId()) {
                 c.setName(order.getName());
+                c.setDelivery(order.getDelivery());
+                c.setPayment(order.getPayment());
                 return c;
             }
         }
