@@ -47,4 +47,8 @@ public class UserRepository {
     public ArrayList<User> findAll() {
         return users;
     }
+
+    public User findByName(String username) {
+        return users.stream().filter(user -> user.getName().equals(username)).findFirst().orElse(null);
+    }
 }

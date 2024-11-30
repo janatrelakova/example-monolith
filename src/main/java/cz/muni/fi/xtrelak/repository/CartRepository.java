@@ -10,7 +10,7 @@ import java.util.Optional;
 public class CartRepository {
     private final ArrayList<Cart> carts = new ArrayList<>(
             new ArrayList<>() {{
-                add(new Cart(1, "Cart"));
+                add(new Cart(1, "Cart", new ArrayList<>()));
                 add(new Cart(2, "Cart"));
                 add(new Cart(3, "Cart"));
             }}
@@ -46,5 +46,13 @@ public class CartRepository {
 
     public ArrayList<Cart> findAll() {
         return carts;
+    }
+
+    public void addProduct(int id, int productId) {
+        Cart cart = findById(id).orElse(null);
+        if (cart == null) {
+            throw new IllegalArgumentException("Cart with id " + id + " not found");
+        }
+        carts.get(carts.indexOf(cart)).getProducts().add(productId);
     }
 }
