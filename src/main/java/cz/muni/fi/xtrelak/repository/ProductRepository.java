@@ -1,5 +1,7 @@
 package cz.muni.fi.xtrelak.repository;
 
+import cz.muni.fi.xtrelak.model.Brand;
+import cz.muni.fi.xtrelak.model.Category;
 import cz.muni.fi.xtrelak.model.Product;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +13,8 @@ import java.util.Optional;
 public class ProductRepository {
     private final ArrayList<Product> products = new ArrayList<>(
             new ArrayList<>() {{
-                add(new Product(1, "Product"));
-                add(new Product(2, "Product"));
+                add(new Product(1, "Product", Category.CATEGORY1, Brand.BRAND1));
+                add(new Product(2, "Product", Category.CATEGORY2, Brand.BRAND2));
                 add(new Product(3, "Product"));
             }}
     );

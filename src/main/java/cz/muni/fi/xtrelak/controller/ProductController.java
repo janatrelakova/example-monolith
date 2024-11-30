@@ -1,5 +1,6 @@
 package cz.muni.fi.xtrelak.controller;
 
+import cz.muni.fi.xtrelak.dto.ProductDto;
 import cz.muni.fi.xtrelak.model.Product;
 import cz.muni.fi.xtrelak.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,30 +19,34 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public ProductDto createProduct(@RequestBody ProductDto product) {
+        var result = productService.createProduct(product.toProductModel());
+        return result.toProductDto();
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable int id) {
-        return productService.getProductById(id);
+    public ProductDto getProductById(@PathVariable("id") int id) {
+        var result = productService.getProductById(id);
+        return result.toProductDto();
     }
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductDto> getAllProducts() {
+        var result = productService.getAllProducts();
+        return result.stream().map(Product::toProductDto).toList();
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable int id, @RequestBody Product product) {
+    public ProductDto updateProduct(@PathVariable("id") int id, @RequestBody ProductDto product) {
         if (id != product.getId()) {
             throw new IllegalArgumentException("Id in path and in body must be the same");
         }
-        return productService.updateProduct(product);
+        var result = productService.updateProduct(product.toProductModel());
+        return result.toProductDto();
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable int id) {
+    public void deleteProduct(@PathVariable("id") int id) {
         productService.deleteProduct(id);
     }
 }
