@@ -8,6 +8,12 @@ public class ProductDto extends BaseDto {
     private final String category;
     private final String brand;
 
+    public ProductDto() {
+        super(0, "");
+        this.category = null;
+        this.brand = null;
+    }
+
     public ProductDto(int id, String name, String category, String brand) {
         super(id, name);
         this.category = category;
@@ -21,8 +27,15 @@ public class ProductDto extends BaseDto {
     }
 
     public Product toProductModel() {
-        var categoryEnum = Category.valueOf(category);
-        var brandEnum = Brand.valueOf(brand);
-        return new Product(this.getId(), this.getName(), categoryEnum, brandEnum);
+        Category c = null;
+        if (this.category != null) {
+            c = Category.valueOf(category);
+        }
+
+        Brand b = null;
+        if (this.brand != null) {
+            b = Brand.valueOf(brand);
+        }
+        return new Product(this.getId(), this.getName(), c, b);
     }
 }

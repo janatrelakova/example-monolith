@@ -10,9 +10,17 @@ import java.util.List;
 public class WishlistRepository {
     private final List<Wishlist> wishlists = new ArrayList<>(
             new ArrayList<>() {{
-                add(new Wishlist(1, List.of(1)));
-                add(new Wishlist(2, List.of(1, 2)));
-                add(new Wishlist(3, List.of(1, 3)));
+                add(new Wishlist(1, new ArrayList<>() {{
+                    add(1);
+                }}));
+                add(new Wishlist(1, new ArrayList<>() {{
+                    add(1);
+                    add(2);
+                }}));
+                add(new Wishlist(1, new ArrayList<>() {{
+                    add(1);
+                    add(3);
+                }}));
             }}
     );
 
