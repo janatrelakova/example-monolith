@@ -2,9 +2,9 @@
 Showcase of spring boot monolith project.
 
 ## Warning
-This project may contain imperfect code, and is not intended for production use.
-The goal of this project is to create a simple but larger project to be analyzed
-for automatic decomposition of monolith to microservices. That means that the
+This project may contain imperfect code and is not intended for production use.
+This project aims to create a simple but larger project to be analyzed
+for the automatic decomposition of monolith to microservices. That means that the
 actual correctness of functionality is less important than the overall structure and
 static or dynamic calls between components.
 
@@ -17,15 +17,12 @@ static or dynamic calls between components.
 - The project is not optimized for security.
 - It may contain bugs.
 - It may return unexpected results.
-- Resource mappings or code present in this project may drift away from conventions.
+- Resource mappings or code in this project may drift away from conventions.
 - This project is not intended for production use.
-
-## Project structure
-
 
 ## Entity relationships
 ![ecommerce.png](assets/ecommerce.png)
 
 ## CONTRIBUTING
-In case you are interested to enhance or add new features to better mirror real monolith,
-feel free to open pull request or fork the project.
+In case you are interested in enhancing or adding new features to better mirror real monolith,
+feel free to open a pull request or fork the project.
