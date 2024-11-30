@@ -7,12 +7,14 @@ public class Order extends BaseEntity {
     private Delivery delivery;
     private Payment payment;
     private final List<Product> products;
+    private final Integer userId;
 
-    public Order(int id, String name, Delivery delivery, Payment payment, List<Product> products) {
+    public Order(int id, String name, Delivery delivery, Payment payment, List<Product> products, Integer userId) {
         super(id, name);
         this.delivery = delivery;
         this.payment = payment;
         this.products = products;
+        this.userId = userId;
     }
 
     public Delivery getDelivery() {
@@ -33,5 +35,9 @@ public class Order extends BaseEntity {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public Integer getUserId() {
+        return userId;
     }
 }

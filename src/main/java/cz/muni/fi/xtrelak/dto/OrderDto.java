@@ -43,7 +43,8 @@ public class OrderDto extends BaseDto {
             this.getName(),
             null,
             null,
-            this.getProducts().stream().map(ProductDto::toProductModel).toList()
+            this.getProducts().stream().map(ProductDto::toProductModel).toList(),
+                1
         );
     }
 }

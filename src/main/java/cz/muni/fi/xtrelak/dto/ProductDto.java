@@ -14,13 +14,11 @@ public class ProductDto extends BaseDto {
         this.brand = brand;
     }
 
-
     public ProductDto(int id, String name) {
         super(id, name);
         this.category = "null";
         this.brand = "null1";
     }
-
 
     public Product toProductModel() {
         var categoryEnum = Category.valueOf(category);

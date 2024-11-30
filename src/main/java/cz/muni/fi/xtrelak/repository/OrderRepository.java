@@ -11,9 +11,9 @@ import java.util.Optional;
 public class OrderRepository {
     private final ArrayList<Order> orders = new ArrayList<>(
             new ArrayList<>() {{
-                add(new Order(1, "Order", null, null, List.of()));
-                add(new Order(2, "Order", null, null, List.of()));
-                add(new Order(3, "Order", null, null, List.of()));
+                add(new Order(1, "Order", null, null, List.of(), 1));
+                add(new Order(2, "Order", null, null, List.of(), 2));
+                add(new Order(3, "Order", null, null, List.of(), 2));
             }}
     );
 
@@ -49,5 +49,9 @@ public class OrderRepository {
 
     public ArrayList<Order> findAll() {
         return orders;
+    }
+
+    public List<Order> findByUserId(int userId) {
+        return orders.stream().filter(order -> order.getUserId().equals(userId)).toList();
     }
 }
